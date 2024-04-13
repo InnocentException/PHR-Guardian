@@ -30,6 +30,8 @@
 .pub-cache/
 .pub/
 /build/
+android/app/key.jks
+android/app/key.properties
 
 
 # Web related

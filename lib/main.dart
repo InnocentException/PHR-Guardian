@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,10 +46,25 @@ class _MyAppState extends State<MyApp> {
 
     // Load settingd
     appController.loadSettings();
+
+    // Authentication with Biometrics
+    if (!boxSettings.values.isEmpty) {
+      appController.authenticate().then((value) => {
+            if (!value)
+              {exit(0)}
+            else
+              {
+                setState(() {
+                  appController.isAuthenticated = true;
+                })
+              }
+          });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    print((boxSettings.values.isEmpty));
     return DynamicColorBuilder(
         builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
       return GetMaterialApp(
@@ -61,7 +78,9 @@ class _MyAppState extends State<MyApp> {
         // Check setting has data if not goto setting page
         home: (boxSettings.values.isEmpty)
             ? const SettingPage()
-            : const HomePage(),
+            : appController.isAuthenticated
+                ? const HomePage()
+                : const Column(),
       );
     });
   }

@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:phr/controllers/app_controller.dart';
 import 'package:phr/pages/home/blood_pressure_info_widget.dart';
 import 'package:phr/pages/home/bmi_info_widget.dart';
-import 'package:phr/pages/profile/profile.dart';
 import 'package:phr/pages/home/glucose_info_widget.dart';
 import 'package:phr/pages/home/menu_widget.dart';
+import 'package:phr/pages/profile/profile.dart';
 import 'package:phr/pages/statistic/statistic.dart';
 
 class HomePage extends StatefulWidget {

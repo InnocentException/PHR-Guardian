@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:phr/models/bloodpressure.dart';
 import 'package:phr/models/bmi.dart';
 import 'package:phr/models/glucose.dart';
@@ -11,9 +12,32 @@ import 'package:phr/models/settings.dart';
 class AppController extends GetxController {
   RxString yourName = "".obs;
   RxString yourImage = "".obs;
+  bool isAuthenticated = false;
 
   AppController() {
     hiveRegisterAdapter();
+  }
+
+  Future<bool> authenticate() async {
+    final LocalAuthentication auth = LocalAuthentication();
+    final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
+    final bool canAuthenticate =
+        canAuthenticateWithBiometrics && await auth.isDeviceSupported();
+
+    final List<BiometricType> availableBiometrics =
+        await auth.getAvailableBiometrics();
+
+    if (canAuthenticate && availableBiometrics.isNotEmpty) {
+      final bool didAuthenticate = await auth.authenticate(
+          localizedReason: 'Please authenticate to enter the App',
+          options: AuthenticationOptions(
+            stickyAuth: true,
+          ));
+
+      return didAuthenticate;
+    } else {
+      return true;
+    }
   }
 
   // bmi decode

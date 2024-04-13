@@ -1,9 +1,9 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=d:\bin\flutter"
-export "FLUTTER_APPLICATION_PATH=D:\Projects\FlutterProject\phr"
+export "FLUTTER_ROOT=/home/luca/Dokumente/Dev/runtimes/flutter"
+export "FLUTTER_APPLICATION_PATH=/home/luca/Dokumente/Dev/projects/PHR-Guardian"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
-export "FLUTTER_TARGET=lib\main.dart"
+export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.12.0"
 export "FLUTTER_BUILD_NUMBER=13"
